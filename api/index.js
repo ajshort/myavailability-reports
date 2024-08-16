@@ -1,10 +1,23 @@
+const util = require('./util');
+
 const express = require('express');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get('/', async (req, res) => {
+  try {
+    const token = await util.token();
+
+    res.send(token);
+  } catch (err) {
+    console.log(err);
+
+    res.status(500)
+       .send('Internal Server Error');
+  }
 })
 
 module.exports = app;
