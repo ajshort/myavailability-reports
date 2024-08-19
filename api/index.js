@@ -7,17 +7,25 @@ dotenv.config();
 
 const app = express();
 
-app.get('/', async (req, res) => {
-  try {
-    const token = await util.token();
+app.set('view engine', 'pug');
 
-    res.send(token);
+app.use('/bootstrap', express.static(__dirname + '/../node_modules/bootstrap/dist'));
+
+app.get('/', async (req, res) => {
+  let token;
+
+  try {
+    token = await util.token();
   } catch (err) {
-    console.log(err);
+    console.log('Error getting access token', err);
 
     res.status(500)
-       .send('Internal Server Error');
+       .end('Internal Server Error');
+
+    return;
   }
+
+  res.render('index');
 })
 
 module.exports = app;

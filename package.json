@@ -2,9 +2,11 @@
   "name": "myavailability-reports",
   "dependencies": {
     "@vercel/kv": "^2.0.0",
+    "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "pug": "^3.0.3",
     "puppeteer": "^23.1.0",
     "totp-generator": "^1.0.0"
   }
